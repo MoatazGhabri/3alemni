@@ -115,7 +115,7 @@ public class StudentParticipated extends AppCompatActivity {
             }
         });
 
-        adapter = new ParticipationAdapter(StudentParticipated.this, R.layout.paricipated_table, studentList);
+        adapter = new ParticipationAdapter(StudentParticipated.this, R.layout.paricipated_table, studentList, teacherName);
         listView.setAdapter(adapter);
         drawerLayout = findViewById(R.id.drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -253,4 +253,5 @@ public class StudentParticipated extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

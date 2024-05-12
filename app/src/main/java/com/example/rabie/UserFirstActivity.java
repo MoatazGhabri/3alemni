@@ -185,7 +185,7 @@ public class UserFirstActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Toast.makeText(UserFirstActivity.this, "Failed to retrieve participation data from Firebase.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UserFirstActivity.this, "Failed to retrieve participation course", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -205,7 +205,7 @@ public class UserFirstActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(UserFirstActivity.this, "Failed to retrieve data from Firebase.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserFirstActivity.this, "Failed to retrieve data", Toast.LENGTH_SHORT).show();
             }
         });
         EditText searchEditText = findViewById(R.id.recherche);
@@ -412,18 +412,27 @@ public class UserFirstActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
+                    List<String> courseNames = new ArrayList<>();
+                    List<String> coursePdfUrls = new ArrayList<>();
+                    String courseCategory = "";
                     for (DataSnapshot courseSnapshot : dataSnapshot.getChildren()) {
                         String courseName = courseSnapshot.child("name").getValue(String.class);
-                        String courseDescription = courseSnapshot.child("description").getValue(String.class);
                         String coursePdfUrl = courseSnapshot.child("pdfUrl").getValue(String.class);
-                        String courseCategory = courseSnapshot.child("category").getValue(String.class);
+                        courseCategory = courseSnapshot.child("category").getValue(String.class);
+                        String Teacher = courseSnapshot.child("teacherName").getValue(String.class);
 
+                        if (teacherName.equals(Teacher)) {
+                            courseNames.add(courseName);
+                            coursePdfUrls.add(coursePdfUrl);
+                        }
+                    }
+
+                    if (!courseNames.isEmpty()) {
                         Intent intent = new Intent(UserFirstActivity.this, CourseActivity.class);
                         intent.putExtra("teacherName", teacherName);
                         intent.putExtra("category", courseCategory);
-                        intent.putExtra("description", courseDescription);
-                        intent.putExtra("name", courseName);
-                        intent.putExtra("pdfUrl", coursePdfUrl);
+                        intent.putStringArrayListExtra("courseNames", (ArrayList<String>) courseNames);
+                        intent.putStringArrayListExtra("coursePdfUrls", (ArrayList<String>) coursePdfUrls);
                         startActivity(intent);
                         overridePendingTransition(R.anim.slide_out_right, R.anim.slide_in_left);
 
@@ -435,6 +444,8 @@ public class UserFirstActivity extends AppCompatActivity {
                         participationMap.put("teacherName", teacherName);
                         participationMap.put("category", courseCategory);
                         participatedRef.child(participationKey).setValue(participationMap);
+                    } else {
+                        Toast.makeText(UserFirstActivity.this, "No courses found for the specified teacher.", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(UserFirstActivity.this, "Invalid key", Toast.LENGTH_SHORT).show();

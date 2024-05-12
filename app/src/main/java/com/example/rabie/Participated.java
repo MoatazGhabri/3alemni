@@ -279,15 +279,27 @@ public class Participated extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
+                            List<String> courseNames = new ArrayList<>();
+                            List<String> coursePdfUrls = new ArrayList<>();
+                            String courseCategory = "";
                             for (DataSnapshot courseSnapshot : dataSnapshot.getChildren()) {
                                 String courseName = courseSnapshot.child("name").getValue(String.class);
-                                String courseDescription = courseSnapshot.child("description").getValue(String.class);
                                 String coursePdfUrl = courseSnapshot.child("pdfUrl").getValue(String.class);
+                                courseCategory = courseSnapshot.child("category").getValue(String.class);
+                                String Teacher = courseSnapshot.child("teacherName").getValue(String.class);
+
+                                if (teacherName.equals(Teacher)) {
+                                    courseNames.add(courseName);
+                                    coursePdfUrls.add(coursePdfUrl);
+                                }
+                            }
+                            if (!courseNames.isEmpty()) {
                                 Intent intent = new Intent(Participated.this, CourseActivity.class);
                                 intent.putExtra("teacherName", teacherName);
-                                intent.putExtra("name", courseName);
-                                intent.putExtra("description", courseDescription);
-                                intent.putExtra("pdfUrl", coursePdfUrl);
+                                intent.putExtra("category", courseCategory);
+                                intent.putStringArrayListExtra("courseNames", (ArrayList<String>) courseNames);
+                                intent.putStringArrayListExtra("coursePdfUrls", (ArrayList<String>) coursePdfUrls);
+                                startActivity(intent);
                                 startActivity(intent);
                                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 

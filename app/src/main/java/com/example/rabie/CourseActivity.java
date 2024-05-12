@@ -1,10 +1,13 @@
 package com.example.rabie;
 
+import static android.content.ContentValues.TAG;
+
 import android.Manifest;
 import android.app.DownloadManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -57,7 +60,7 @@ public class CourseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
-        setContentView(R.layout.activity_course);
+        setContentView(R.layout.course);
         SharedPreferences sharedPreferences = getSharedPreferences("userPrefs", MODE_PRIVATE);
         String userName = sharedPreferences.getString("fullName", "");
         Log.d("UserNameLog", "UserName: " + userName);
@@ -66,24 +69,66 @@ public class CourseActivity extends AppCompatActivity {
         mStorageRef = FirebaseStorage.getInstance().getReference();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        String tech = getIntent().getStringExtra("teacherName");
-        String courseDescription = getIntent().getStringExtra("description");
-        String courseName = getIntent().getStringExtra("name");
-        String coursePdfUrl = getIntent().getStringExtra("pdfUrl");
+//        String tech = getIntent().getStringExtra("teacherName");
+//        String courseDescription = getIntent().getStringExtra("description");
+//        String courseName = getIntent().getStringExtra("name");
+//        String coursePdfUrl = getIntent().getStringExtra("pdfUrl");
+        Intent intent = getIntent();
 
-        if (courseDescription != null && courseName != null && coursePdfUrl != null) {
+        String tech = intent.getStringExtra("teacherName");
+        String category = intent.getStringExtra("category");
+        ArrayList<String> courseNames = intent.getStringArrayListExtra("courseNames");
+        ArrayList<String> coursePdfUrls = intent.getStringArrayListExtra("coursePdfUrls");
+        Log.d(TAG, "Course Names: " + courseNames);
+        Log.d(TAG, "Course PDF URLs: " + coursePdfUrls);
+        if ( courseNames != null && coursePdfUrls != null) {
 
             TextView teacher = findViewById(R.id.Teachername);
-            TextView courseDescriptionTextView = findViewById(R.id.courseDescriptionTextView);
-            TextView courseNameTextView = findViewById(R.id.courseNameTextView);
-            ImageButton reclamationButton = findViewById(R.id.reclamationButton);
+            TextView categoryTextView = findViewById(R.id.categoryTextView);
+
+
 
             //TextView coursePdfUrlTextView = findViewById(R.id.coursePdfUrlTextView);
             teacher.setText(tech);
-            courseDescriptionTextView.setText(courseDescription);
-            courseNameTextView.setText(courseName);
-            Button quizButton = findViewById(R.id.quiz);
+            categoryTextView.setText(category);
+            LinearLayout coursesContainer = findViewById(R.id.coursesContainer);
+            for (int i = 0; i < courseNames.size(); i++) {
 
+                Button downloadButton = new Button(this);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+                params.setMargins(0, 8, 8, 8);
+                params.width = LinearLayout.LayoutParams.MATCH_PARENT;
+                downloadButton.setLayoutParams(params);
+                downloadButton.setText("Download " + courseNames.get(i));
+
+                final int finalI = i;
+                downloadButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (ContextCompat.checkSelfPermission(CourseActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                                != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(CourseActivity.this,
+                                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                    REQUEST_STORAGE_PERMISSION);
+                        } else {
+                            downloadPdf(courseNames.get(finalI), coursePdfUrls.get(finalI));
+                        }
+
+                    }
+                });
+                downloadButton.setBackgroundResource(R.drawable.shape1);
+                downloadButton.setTextColor(Color.WHITE);
+                downloadButton.setTextSize(16);
+                coursesContainer.addView(downloadButton);
+            }
+        } else {
+            Toast.makeText(CourseActivity.this, "Course details not available", Toast.LENGTH_SHORT).show();
+        }
+        ImageButton reclamationButton = findViewById(R.id.reclamationButton);
+        Button quizButton = findViewById(R.id.quiz);
             quizButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -91,6 +136,7 @@ public class CourseActivity extends AppCompatActivity {
                     checkQuizzesExistInFirebase(teacherName);
                 }
             });
+
             reclamationButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -99,23 +145,7 @@ public class CourseActivity extends AppCompatActivity {
             });
 
 
-            Button downloadButton = findViewById(R.id.downloadButton);
-            downloadButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (ContextCompat.checkSelfPermission(CourseActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                            != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(CourseActivity.this,
-                                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                REQUEST_STORAGE_PERMISSION);
-                    } else {
-                        downloadPdf(courseName, coursePdfUrl);
-                    }
-                }
-            });
-        } else {
-            Toast.makeText(CourseActivity.this, "Course details not available", Toast.LENGTH_SHORT).show();
-        }
+
         ImageButton backButton = findViewById(R.id.backButton);
 
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -280,7 +310,7 @@ public class CourseActivity extends AppCompatActivity {
         dialog.show();
 
         RecyclerView chatHistoryRecyclerView = modalView.findViewById(R.id.chatHistoryRecyclerView);
-        fetchAndDisplayChatHistory(chatHistoryRecyclerView);
+        DisplayChatHistory(chatHistoryRecyclerView);
 
         Button sendMessageButton = modalView.findViewById(R.id.sendMessageButton);
         sendMessageButton.setOnClickListener(new View.OnClickListener() {
@@ -296,7 +326,7 @@ public class CourseActivity extends AppCompatActivity {
 
                     sendMessageToTeacher(message, teacherName, userName);
                     messageEditText.setText("");
-                    fetchAndDisplayChatHistory(chatHistoryRecyclerView);
+                    DisplayChatHistory(chatHistoryRecyclerView);
                 } else {
                     Toast.makeText(CourseActivity.this, "Please enter a message", Toast.LENGTH_SHORT).show();
                 }
@@ -304,7 +334,7 @@ public class CourseActivity extends AppCompatActivity {
         });
     }
 
-    private void fetchAndDisplayChatHistory(RecyclerView recyclerView) {
+    private void DisplayChatHistory(RecyclerView recyclerView) {
         String teacherName = getIntent().getStringExtra("teacherName");
         String userName = getSharedPreferences("userPrefs", MODE_PRIVATE).getString("fullName", "");
 
