@@ -1,0 +1,208 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#FFFFFFFF"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CourseActivity">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:clipChildren="false"
+            android:background="@drawable/blue"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue"
+                android:padding="16dp">
+
+
+
+                <ImageButton
+                android:id="@+id/sendMessageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                    android:elevation="30dp"
+                android:src="@drawable/message"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_alignParentEnd="true"/>
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/backdrawer"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="16dp"
+                android:layout_marginTop="16dp" />
+            </RelativeLayout>
+                <TextView
+                    android:id="@+id/your"
+                    android:textColor="#000000"
+                    android:textSize="32sp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/test_font"
+                    android:layout_width="wrap_content"
+                    android:text="Your Teacher is" />
+                <TextView
+                    android:id="@+id/Teachername"
+                    android:textColor="#000000"
+                    android:textSize="32sp"
+                    android:fontFamily="@font/test_font"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Teacher" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cr20"
+                android:paddingTop="27dp"
+                android:paddingBottom="1dp"
+                android:layout_marginBottom="7dp"
+                android:layout_marginHorizontal="15dp"
+                android:orientation="vertical">
+
+
+
+                <TextView
+                    android:id="@+id/course"
+                    android:textColor="#FFFFFF"
+                    android:textSize="36sp"
+                    android:fontFamily="serif"
+                    android:textAlignment="center"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginHorizontal="27dp"
+                    android:elevation="20dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="Start learning " />
+                <TextView
+                    android:id="@+id/courseNameTextView"
+                    android:textColor="#FFFFFF"
+                    android:textSize="26sp"
+                    android:fontFamily="serif"
+                    android:textAlignment="center"
+                    android:layout_marginHorizontal="27dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="Start learning" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rz3i7ojsbvqf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+
+                android:background="@drawable/dialog_container_bg"
+
+                android:paddingVertical="47dp"
+                android:layout_marginBottom="115dp"
+                android:layout_marginHorizontal="10dp"
+                android:elevation="20dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/courseDescriptionTextView"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="course description" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/reclamationButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="186dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_toStartOf="@+id/sendMessageButton"
+                    android:layout_toEndOf="@+id/backButton"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="8dp"
+                    android:src="@drawable/reclamation" />
+
+                <ImageButton
+                    android:id="@+id/sondageButton"
+                    android:layout_width="77dp"
+                    android:layout_height="47dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="185dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:elevation="30dp"
+                    android:padding="300dp"
+                    android:src="@drawable/sondages" />
+            </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal">
+            <Button
+                android:id="@+id/downloadButton"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/shape1"
+                android:layout_marginHorizontal="8dp"
+                android:textStyle="bold"
+                android:elevation="20dp"
+                android:layout_marginBottom="25dp"
+
+                android:text="Download PDF"
+                android:onClick="onClick"
+                android:layout_marginTop="16dp" />
+            <Button
+                android:id="@+id/quiz"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/shape"
+                android:elevation="20dp"
+                android:layout_marginBottom="25dp"
+                android:textStyle="bold"
+                android:text="pass test"
+                android:onClick="onClick"
+                android:layout_marginTop="16dp" />
+        </LinearLayout>
+        </LinearLayout>
+
+
+
+
+
+</RelativeLayout>

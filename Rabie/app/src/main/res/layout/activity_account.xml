@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+
+    <LinearLayout
+        android:id="@+id/editTextContainer"
+        android:layout_width="374dp"
+        android:layout_height="649dp"
+        android:layout_above="@id/bottom_bar_layout"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape1"
+        android:gravity="center"
+        android:orientation="vertical">
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:src="@drawable/user"/>
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Your account data"
+            android:textAlignment="center"
+            android:textSize="30sp" />
+
+        <EditText
+            android:id="@+id/editTextFullName"
+            android:layout_width="326dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:enabled="false"
+            android:hint="Email" />
+
+        <EditText
+            android:id="@+id/editTextemail"
+            android:layout_width="326dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:enabled="false"
+            android:hint="Name" />
+
+        <EditText
+            android:id="@+id/editTextecin"
+            android:layout_width="326dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:enabled="false"
+            android:hint="Cin" />
+
+        <EditText
+            android:id="@+id/editTextnumber"
+            android:layout_width="326dp"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="Number" />
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/bottom_bar_layout"
+        layout="@layout/bottom_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

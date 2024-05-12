@@ -1,0 +1,75 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomBar"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@drawable/white50"
+    android:elevation="90dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingHorizontal="40dp"
+    android:paddingVertical="7dp">
+
+    <ImageView
+        android:id="@+id/homeIcon"
+        android:layout_width="33dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:scaleType="fitXY"
+        android:src="@drawable/home" />
+
+    <ImageView
+        android:id="@+id/courseIcon"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_marginEnd="30dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:scaleType="fitXY"
+        android:src="@drawable/grad" />
+
+    <ImageView
+        android:id="@+id/accountIcon"
+        android:layout_width="29dp"
+        android:layout_height="30dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_marginEnd="30dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/compte" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/notificationIcon"
+            android:layout_width="33dp"
+            android:layout_height="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitXY"
+            android:src="@drawable/notif" />
+
+        <ImageView
+            android:id="@+id/redCircleIcon"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="-35dp"
+            android:src="@drawable/circle_background"
+            android:visibility="gone" />
+
+    </LinearLayout>
+<View
+    android:layout_width="30dp"
+    android:layout_height="match_parent"/>
+    <ImageView
+        android:id="@+id/logoutIcon"
+        android:layout_width="33dp"
+        android:layout_height="30dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_marginEnd="30dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/logout" />
+</LinearLayout>

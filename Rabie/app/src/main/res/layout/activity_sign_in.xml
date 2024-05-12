@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SignInActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10sp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30sp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30sp"
+                android:text="Welcome \nPlease sign in here !"
+                android:textColor="@color/colorApp"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30sp"
+                android:src="@drawable/img" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+            android:background="@drawable/shape"
+            android:orientation="vertical"
+            android:padding="25sp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textSize="16sp"
+                android:textColor="@color/colorApp"
+                android:textStyle="bold"
+                android:layout_margin="15sp"/>
+
+            <EditText
+                android:id="@+id/emailSignIn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginEnd="10sp"
+                android:hint="exemple@gmail.com"
+                android:inputType="textEmailAddress"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:drawableEnd="@drawable/email"
+                android:drawableTint="@color/colorApp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:textSize="16sp"
+                android:textColor="@color/colorApp"
+                android:textStyle="bold"
+                android:layout_margin="15sp"/>
+
+            <EditText
+                android:id="@+id/passwordSignIn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginEnd="10sp"
+                android:hint="********"
+                android:inputType="textPassword"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:drawableEnd="@drawable/ic_password"
+                android:drawableTint="@color/colorApp"/>
+
+            <CheckBox
+                android:id="@+id/rememberMe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remember Me!"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorApp"
+                android:layout_margin="10sp"/>
+
+            <TextView
+                android:id="@+id/goToForgetPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Forget password!"
+                android:layout_gravity="end"
+                android:textSize="13sp"
+                android:textColor="@color/colorApp"
+                android:textStyle="bold"
+                android:layout_margin="10sp"
+                />
+
+            <Button
+                android:id="@+id/btnSignIn"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Sign in"
+                android:background="@drawable/blue"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/colorApp"
+                app:cornerRadius="20sp"/>
+
+            <TextView
+                android:id="@+id/goToSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New user ! register here !"
+                android:layout_gravity="center"
+                android:layout_marginTop="10sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorApp"
+                android:textSize="16sp"
+                />
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

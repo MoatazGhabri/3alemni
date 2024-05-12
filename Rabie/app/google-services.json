@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "744721947940",
+    "firebase_url": "https://rabie-552fa-default-rtdb.firebaseio.com",
+    "project_id": "rabie-552fa",
+    "storage_bucket": "rabie-552fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744721947940:android:7f7f8ab155bd71b909e7b1",
+        "android_client_info": {
+          "package_name": "com.example.rabie"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClbhzq0XF9WOfl2Z3bY5mNP63pUc1Eni4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
