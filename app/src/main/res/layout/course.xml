@@ -95,6 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:text="Start learning " />
+
             <TextView
                 android:id="@+id/categoryTextView"
                 android:textColor="#FFFFFF"
@@ -107,9 +108,47 @@
                 android:layout_weight="1"
                 android:text="Start learning" />
 
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="30dp"
+                android:src="@drawable/tech" />
+
         </LinearLayout>
 
 
+        <HorizontalScrollView
+            android:id="@+id/r3lhclkoys91"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:paddingTop="1dp"
+            android:paddingBottom="-2dp">
+            <LinearLayout
+                android:id="@+id/coursesContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="27dp"
+                android:layout_marginBottom="35dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+        </LinearLayout>
+        </HorizontalScrollView>
+        <Button
+            android:id="@+id/quiz"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:background="@drawable/shape"
+            android:elevation="20dp"
+            android:layout_marginBottom="25dp"
+            android:textStyle="bold"
+            android:text="pass test"
+            android:onClick="onClick"
+            android:layout_marginTop="16dp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -143,38 +182,7 @@
                 android:padding="300dp"
                 android:src="@drawable/sondages" />
         </LinearLayout>
-        <HorizontalScrollView
-            android:id="@+id/r3lhclkoys91"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fillViewport="true"
-            android:paddingTop="1dp"
-            android:paddingBottom="-2dp">
-            <LinearLayout
-                android:id="@+id/coursesContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="27dp"
-                android:layout_marginBottom="35dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
 
-
-        </LinearLayout>
-        </HorizontalScrollView>
-        <Button
-            android:id="@+id/quiz"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="@color/white"
-            android:background="@drawable/shape"
-            android:elevation="20dp"
-            android:layout_marginBottom="25dp"
-            android:textStyle="bold"
-            android:text="pass test"
-            android:onClick="onClick"
-            android:layout_marginTop="16dp" />
     </LinearLayout>
 
 

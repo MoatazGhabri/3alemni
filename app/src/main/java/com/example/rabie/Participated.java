@@ -300,7 +300,6 @@ public class Participated extends AppCompatActivity {
                                 intent.putStringArrayListExtra("courseNames", (ArrayList<String>) courseNames);
                                 intent.putStringArrayListExtra("coursePdfUrls", (ArrayList<String>) coursePdfUrls);
                                 startActivity(intent);
-                                startActivity(intent);
                                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
                             }

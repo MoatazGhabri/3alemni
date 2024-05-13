@@ -117,7 +117,7 @@ public class UserFirstActivity extends AppCompatActivity {
                 finish();
             }
         });
-        DatabaseReference coursesRef = FirebaseDatabase.getInstance().getReference().child("Courses");
+        DatabaseReference coursesRef = FirebaseDatabase.getInstance().getReference().child("teachers");
 
         coursesRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -127,13 +127,13 @@ public class UserFirstActivity extends AppCompatActivity {
                     courseContainer.removeAllViews();
 
                     for (DataSnapshot courseSnapshot : dataSnapshot.getChildren()) {
-                        String courseCategory = courseSnapshot.child("category").getValue(String.class);
+                        String courseCategory = courseSnapshot.child("course").getValue(String.class);
                         if (courseCategory != null) {
                             addCourseCategory(courseCategory);
                         }
                     }
                 } else {
-                    Log.d(TAG, "No courses found in the database");
+                    Log.d(TAG, "No courses found");
                 }
             }
 
@@ -490,15 +490,33 @@ public class UserFirstActivity extends AppCompatActivity {
         username1.setText(userName);
 
     }
+    private HashSet<String> addedCategories = new HashSet<>();
+
     private void addCourseCategory(String courseCategory) {
-        LinearLayout parentLayout = findViewById(R.id.coursesContainer);
-        LayoutInflater inflater = LayoutInflater.from(this);
-        LinearLayout categoryLayout = (LinearLayout) inflater.inflate(R.layout.course_category_layout, parentLayout, false);
+        if (!addedCategories.contains(courseCategory)) {
+            addedCategories.add(courseCategory);
+            LinearLayout parentLayout = findViewById(R.id.coursesContainer);
+            LayoutInflater inflater = LayoutInflater.from(this);
+            LinearLayout categoryLayout = (LinearLayout) inflater.inflate(R.layout.course_category_layout, parentLayout, false);
 
-        TextView categoryTextView = categoryLayout.findViewById(R.id.categoryName);
-        categoryTextView.setText(courseCategory);
+            TextView categoryTextView = categoryLayout.findViewById(R.id.categoryName);
+            categoryTextView.setText(courseCategory);
 
-        parentLayout.addView(categoryLayout);
+            categoryLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(UserFirstActivity.this, CategoryActivity.class);
+                    intent.putExtra("category", courseCategory);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+                }
+            });
+
+            parentLayout.addView(categoryLayout);
+        }
     }
+
+
 
 }
